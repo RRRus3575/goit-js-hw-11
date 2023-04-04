@@ -17,6 +17,7 @@ function addList(event) {
   unsplashAPI
     .getData()
     .then(data => {
+      // {data.data.hits} = data;
       console.log(data);
     })
     .catch(err => {
