@@ -5,7 +5,7 @@ export class UnsplashAPI {
 
   getData() {
     return axios.get(
-      'https://pixabay.com/api/?key="+35067141-e641ff5dd074524f6628a17be+"',
+      'https://pixabay.com/api/?key="35067141-e641ff5dd074524f6628a17be"',
       {
         q: this.q,
         image_type: 'photo',
