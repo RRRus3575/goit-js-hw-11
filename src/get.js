@@ -2,6 +2,7 @@ import axios from 'axios';
 
 export class UnsplashAPI {
   q = null;
+  page = 1;
 
   getData() {
     return axios.get(
@@ -11,6 +12,7 @@ export class UnsplashAPI {
         image_type: 'photo',
         orientation: 'horizontal',
         safesearch: true,
+        page: this.page,
       }
     );
   }

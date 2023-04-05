@@ -6,10 +6,14 @@ import 'simplelightbox/dist/simple-lightbox.min.css';
 const formEl = document.querySelector('#search-form');
 const inputEl = document.querySelector('input');
 const listEl = document.querySelector('.gallery-list');
+const btnEl = document.querySelector('.btn-more');
 
 const unsplashAPI = new UnsplashAPI();
 
 formEl.addEventListener('submit', addList);
+btnEl.addEventListener('click', () => {
+  unsplashAPI.page += 1;
+});
 
 function crateImageEl(hits) {
   return hits
@@ -85,6 +89,8 @@ function addList(event) {
       let cardsMarcup = crateImageEl(hits);
 
       listEl.insertAdjacentHTML('beforeend', cardsMarcup);
+
+      btnEl.classList.remove('is-hidden');
     })
     .catch(err => {
       console.log(err);
