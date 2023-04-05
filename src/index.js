@@ -68,9 +68,12 @@ var lightbox = new SimpleLightbox('.gallery a', {
 function addList(event) {
   event.preventDefault();
 
+  listEl.innerHTML = '';
+
   unsplashAPI.q = inputEl.value.trim();
   console.log(unsplashAPI.q);
-  if ((unsplashAPI.q = '')) {
+
+  if (unsplashAPI.q === '') {
     return;
   }
 
