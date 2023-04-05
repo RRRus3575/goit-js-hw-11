@@ -70,6 +70,9 @@ function addList(event) {
 
   unsplashAPI.q = inputEl.value.trim();
   console.log(unsplashAPI.q);
+  if ((unsplashAPI.q = '')) {
+    return;
+  }
 
   unsplashAPI
     .getData()
