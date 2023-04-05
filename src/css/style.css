@@ -19,6 +19,8 @@ form {
   display: flex;
   gap: 30px;
   flex-wrap: wrap;
+  margin-left: auto;
+  margin-right: auto;
 }
 .gallery__image {
   width: 350px;
@@ -31,4 +33,11 @@ form {
 .info-item {
   display: flex;
   flex-direction: column;
+}
+.is-hidden {
+  position: absolute;
+  clip: rect(0 0 0 0);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
 }
