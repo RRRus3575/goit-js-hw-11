@@ -88,6 +88,8 @@ const addList = async event => {
     addElements(data);
 
     btnEl.classList.remove('is-hidden');
+
+    lightbox.refresh();
   } catch (err) {
     console.log(err);
   }
@@ -100,6 +102,8 @@ const loadMore = async () => {
     const data = await unsplashAPI.getData();
 
     addElements(data);
+
+    lightbox.refresh();
   } catch (err) {
     console.log(err);
   }
