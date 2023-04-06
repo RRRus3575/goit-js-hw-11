@@ -1,9 +1,11 @@
 body {
   padding: 0;
   margin: 0;
+  text-align: center;
 }
 a {
   text-decoration: none;
+  color: #0f1333;
 }
 form {
   position: fixed;
@@ -15,10 +17,15 @@ form {
   padding-top: 10px;
   background-color: #4253af;
 }
+span {
+  text-align: center;
+}
 .gallery-list {
   display: flex;
   gap: 30px;
   flex-wrap: wrap;
+  margin-top: 50px;
+  margin-bottom: 15px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -40,4 +47,15 @@ form {
   width: 1px;
   height: 1px;
   margin: -1px;
+}
+.btn-more {
+  padding: 8px 25px;
+  font-size: 17px;
+  background-color: #4253af;
+  color: aliceblue;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+.btn-more:hover {
+  background-color: #0f1333;
 }
