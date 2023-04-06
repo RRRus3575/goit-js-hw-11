@@ -42,11 +42,7 @@ span {
   flex-direction: column;
 }
 .is-hidden {
-  position: absolute;
-  clip: rect(0 0 0 0);
-  width: 1px;
-  height: 1px;
-  margin: -1px;
+  display: none;
 }
 .btn-more {
   padding: 8px 25px;
