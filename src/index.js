@@ -8,6 +8,14 @@ const inputEl = document.querySelector('input');
 const listEl = document.querySelector('.gallery-list');
 const btnEl = document.querySelector('.btn-more');
 
+var lightbox = new SimpleLightbox('.gallery a', {
+  captionSelector: 'img',
+  captionsData: 'alt',
+  captionPosition: 'bottom',
+  captionDelay: 250,
+  scrollZoom: false,
+});
+
 const unsplashAPI = new UnsplashAPI();
 
 function crateImageEl(hits) {
@@ -111,11 +119,3 @@ const loadMore = async () => {
 
 formEl.addEventListener('submit', addList);
 btnEl.addEventListener('click', loadMore);
-
-var lightbox = new SimpleLightbox('.gallery a', {
-  captionSelector: 'img',
-  captionsData: 'alt',
-  captionPosition: 'bottom',
-  captionDelay: 250,
-  scrollZoom: false,
-});
