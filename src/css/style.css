@@ -1,6 +1,7 @@
 body {
   padding: 0;
   margin: 0;
+
   text-align: center;
 }
 a {
@@ -26,8 +27,7 @@ span {
   flex-wrap: wrap;
   margin-top: 60px;
   margin-bottom: 15px;
-  margin-left: auto;
-  margin-right: auto;
+  justify-content: center;
 }
 .gallery__image {
   width: 350px;
