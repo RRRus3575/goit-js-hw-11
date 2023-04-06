@@ -9,7 +9,7 @@ const inputEl = document.querySelector('input');
 const listEl = document.querySelector('.gallery-list');
 const btnEl = document.querySelector('.btn-more');
 
-var lightbox = new SimpleLightbox('.gallery a', {
+var lightbox = new SimpleLightbox('.gallery-list a', {
   captionSelector: 'img',
   captionsData: 'alt',
   captionPosition: 'bottom',
