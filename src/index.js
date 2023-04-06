@@ -74,17 +74,20 @@ function addList(event) {
 
   listEl.innerHTML = '';
 
-  unsplashAPI.q = inputEl.value.trim();
-  console.log(unsplashAPI.q);
-
-  if (unsplashAPI.q === '') {
+  if (inputEl.value === '') {
     return;
   }
+
+  unsplashAPI.q = inputEl.value.trim();
+  console.log(unsplashAPI.q);
+  inputEl.value = '';
 
   unsplashAPI
     .getData()
     .then(data => {
       let { hits } = data.data;
+
+      console.log(data);
 
       let cardsMarcup = crateImageEl(hits);
 
