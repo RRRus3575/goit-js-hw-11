@@ -11,9 +11,7 @@ const btnEl = document.querySelector('.btn-more');
 const unsplashAPI = new UnsplashAPI();
 
 formEl.addEventListener('submit', addList);
-btnEl.addEventListener('click', () => {
-  unsplashAPI.page += 1;
-});
+btnEl.addEventListener('click', loadMore);
 
 function crateImageEl(hits) {
   return hits
@@ -61,6 +59,14 @@ function crateImageEl(hits) {
     .join('');
 }
 
+function addElements(data) {
+  let { hits } = data.data;
+
+  let cardsMarcup = crateImageEl(hits);
+
+  listEl.insertAdjacentHTML('beforeend', cardsMarcup);
+}
+
 var lightbox = new SimpleLightbox('.gallery a', {
   captionSelector: 'img',
   captionsData: 'alt',
@@ -85,15 +91,28 @@ function addList(event) {
   unsplashAPI
     .getData()
     .then(data => {
-      let { hits } = data.data;
-
-      console.log(data);
-
-      let cardsMarcup = crateImageEl(hits);
-
-      listEl.insertAdjacentHTML('beforeend', cardsMarcup);
+      if (
+        data.data.totalHits === unsplashAPI.page ||
+        data.data.totalHits === 0
+      ) {
+        btnEl.classList.add('is-hidden');
+        return;
+      }
+      addElements(data);
 
       btnEl.classList.remove('is-hidden');
+    })
+    .catch(err => {
+      console.log(err);
+    });
+}
+
+function loadMore() {
+  unsplashAPI.page += 1;
+  unsplashAPI
+    .getData()
+    .then(data => {
+      addElements(data);
     })
     .catch(err => {
       console.log(err);
