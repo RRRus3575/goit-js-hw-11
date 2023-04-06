@@ -2,6 +2,7 @@ import axios from 'axios';
 import { UnsplashAPI } from './get';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
+import Notiflix from 'notiflix';
 
 const formEl = document.querySelector('#search-form');
 const inputEl = document.querySelector('input');
@@ -75,23 +76,39 @@ function addElements(data) {
 const addList = async event => {
   event.preventDefault();
 
+  btnEl.classList.add('is-hidden');
+
   listEl.innerHTML = '';
 
   if (inputEl.value === '') {
+    Notiflix.Notify.failure(
+      'Sorry, there are no images matching your search query. Please try again.'
+    );
     return;
   }
 
   unsplashAPI.q = inputEl.value.trim();
-  console.log(unsplashAPI.q);
+
   inputEl.value = '';
 
   try {
     const data = await unsplashAPI.getData();
 
-    if (data.data.totalHits === unsplashAPI.page || data.data.totalHits === 0) {
-      btnEl.classList.add('is-hidden');
+    if (data.data.totalHits === 0) {
+      Notiflix.Notify.failure(
+        'Sorry, there are no images matching your search query. Please try again.'
+      );
       return;
     }
+
+    if (data.data.totalHits === unsplashAPI.page) {
+      Notiflix.Notify.failure(
+        "We're sorry, but you've reached the end of search results."
+      );
+      return;
+    }
+
+    Notiflix.Notify.success(`Hooray! We found ${data.data.totalHits} images.`);
 
     addElements(data);
 
