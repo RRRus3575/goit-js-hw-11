@@ -56,6 +56,9 @@ span {
   border-radius: 5px;
   margin-bottom: 10px;
 }
+button {
+  transform: all 500ms linear;
+}
 button:hover {
   background-color: #0f1333;
   color: rgb(230, 233, 236);
