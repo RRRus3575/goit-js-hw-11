@@ -15,7 +15,7 @@ var lightbox = new SimpleLightbox('.gallery-list a', {
   captionPosition: 'bottom',
   captionDelay: 250,
   scrollZoom: false,
-  download: string,
+  download: 'string',
 });
 
 const unsplashAPI = new UnsplashAPI();
