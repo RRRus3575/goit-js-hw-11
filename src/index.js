@@ -10,9 +10,6 @@ const btnEl = document.querySelector('.btn-more');
 
 const unsplashAPI = new UnsplashAPI();
 
-formEl.addEventListener('submit', addList);
-btnEl.addEventListener('click', loadMore);
-
 function crateImageEl(hits) {
   return hits
     .map(
@@ -67,15 +64,7 @@ function addElements(data) {
   listEl.insertAdjacentHTML('beforeend', cardsMarcup);
 }
 
-var lightbox = new SimpleLightbox('.gallery a', {
-  captionSelector: 'img',
-  captionsData: 'alt',
-  captionPosition: 'bottom',
-  captionDelay: 250,
-  scrollZoom: false,
-});
-
-function addList(event) {
+const addList = async event => {
   event.preventDefault();
 
   listEl.innerHTML = '';
@@ -88,33 +77,41 @@ function addList(event) {
   console.log(unsplashAPI.q);
   inputEl.value = '';
 
-  unsplashAPI
-    .getData()
-    .then(data => {
-      if (
-        data.data.totalHits === unsplashAPI.page ||
-        data.data.totalHits === 0
-      ) {
-        btnEl.classList.add('is-hidden');
-        return;
-      }
-      addElements(data);
+  try {
+    const data = await unsplashAPI.getData();
 
-      btnEl.classList.remove('is-hidden');
-    })
-    .catch(err => {
-      console.log(err);
-    });
-}
+    if (data.data.totalHits === unsplashAPI.page || data.data.totalHits === 0) {
+      btnEl.classList.add('is-hidden');
+      return;
+    }
 
-function loadMore() {
+    addElements(data);
+
+    btnEl.classList.remove('is-hidden');
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+const loadMore = async () => {
   unsplashAPI.page += 1;
-  unsplashAPI
-    .getData()
-    .then(data => {
-      addElements(data);
-    })
-    .catch(err => {
-      console.log(err);
-    });
-}
+
+  try {
+    const data = await unsplashAPI.getData();
+
+    addElements(data);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+var lightbox = new SimpleLightbox('.gallery a', {
+  captionSelector: 'img',
+  captionsData: 'alt',
+  captionPosition: 'bottom',
+  captionDelay: 250,
+  scrollZoom: false,
+});
+
+formEl.addEventListener('submit', addList);
+btnEl.addEventListener('click', loadMore);
