@@ -52,10 +52,11 @@ span {
   padding: 8px 25px;
   font-size: 17px;
   background-color: #4253af;
-  color: aliceblue;
+  color: rgb(239, 243, 247);
   border-radius: 5px;
   margin-bottom: 10px;
 }
-.btn-more:hover {
+button:hover {
   background-color: #0f1333;
+  color: rgb(230, 233, 236);
 }

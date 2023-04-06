@@ -105,6 +105,9 @@ const loadMore = async () => {
   }
 };
 
+formEl.addEventListener('submit', addList);
+btnEl.addEventListener('click', loadMore);
+
 var lightbox = new SimpleLightbox('.gallery a', {
   captionSelector: 'img',
   captionsData: 'alt',
@@ -112,6 +115,3 @@ var lightbox = new SimpleLightbox('.gallery a', {
   captionDelay: 250,
   scrollZoom: false,
 });
-
-formEl.addEventListener('submit', addList);
-btnEl.addEventListener('click', loadMore);

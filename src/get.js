@@ -3,17 +3,17 @@ import axios from 'axios';
 export class UnsplashAPI {
   q = null;
   page = 1;
+  image_type = 'photo';
+  orientation = 'horizontal';
+  safesearch = true;
 
-  getData() {
-    return axios.get(
-      `https://pixabay.com/api/?key=35067141-e641ff5dd074524f6628a17be`,
-      {
-        q: this.q,
-        image_type: 'photo',
-        orientation: 'horizontal',
-        safesearch: true,
-        page: this.page,
-      }
-    );
+  async getData() {
+    try {
+      return axios.get(
+        `https://pixabay.com/api/?key=35067141-e641ff5dd074524f6628a17be&q=${this.q}&image_type=${this.image_type}&orientation=${this.orientation}&safesearch=${this.safesearch}&page=${this.page}`
+      );
+    } catch (err) {
+      throw new Error(err.message);
+    }
   }
 }
